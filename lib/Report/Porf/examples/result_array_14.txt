@@ -1,0 +1,20 @@
+
+*============+==================+=================+=============+==========*
+@    Count   @     TimeStamp    @       Age       @   Prename   @  Surname @
+*------------+------------------+-----------------+-------------+----------*
+|      1     | 1.40000e-004 sec |     7.143 years | Vorname 1   | Name 1   |
+|      2     | 2.36000e-004 sec |    14.286 years | Vorname 2   | Name 2   |
+|      3     | 2.68000e-004 sec |    21.429 years | Vorname 3   | Name 3   |
+|      4     | 2.96000e-004 sec |    28.571 years | Vorname 4   | Name 4   |
+|      5     | 3.35000e-004 sec |    35.714 years | Vorname 5   | Name 5   |
+|      6     | 3.64000e-004 sec |    42.857 years | Vorname 6   | Name 6   |
+|      7     | 3.91000e-004 sec |    50.000 years | Vorname 7   | Name 7   |
+|      8     | 4.20000e-004 sec |    57.143 years | Vorname 8   | Name 8   |
+|      9     | 4.49000e-004 sec |    64.286 years | Vorname 9   | Name 9   |
+|     10     | 4.80000e-004 sec |    71.429 years | Vorname 10  | Name 10  |
+|     11     | 5.10000e-004 sec |    78.571 years | Vorname 11  | Name 11  |
+|     12     | 5.38000e-004 sec |    85.714 years | Vorname 12  | Name 12  |
+|     13     | 5.65000e-004 sec |    92.857 years | Vorname 13  | Name 13  |
+|     14     | 5.94000e-004 sec |   100.000 years | Vorname 14  | Name 14  |
+*============+==================+=================+=============+==========*
+# Time needed for export of 14 lines (array) by example script 'example_array.pl': 0.019324 sec
