@@ -10,7 +10,7 @@
 # More documentation at the end of file
 #------------------------------------------------------------------------------
 
-$VERSION = "2.000";
+$VERSION = "2.001";
 
 #------------------------------------------------------------------------------
 #
@@ -943,6 +943,28 @@ sub get_configure_complete_action {
         ) = @_;
     
     return $self->{ConfigureCompleteAction};
+}
+
+# --- default_cell_value ---------------------------------------------------------------
+
+sub set_default_cell_value {
+    my ($self,        # instance_ref
+        $value        # value to set
+        ) = @_;
+
+    if ($self->configure_is_complete()) {
+        warn ("Cannot set default_cell_value after configuration has been completed in ".(caller(3))[3]."\n");
+        return;
+    }
+    
+    $self->{default_cell_value} = $value;
+}
+
+sub get_default_cell_value {
+    my ($self,        # instance_ref
+        ) = @_;
+    
+    return $self->{default_cell_value};
 }
 
 # --- CellOutputAction ---------------------------------------------------------------

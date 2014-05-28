@@ -6,12 +6,12 @@
 #
 # Framework to create/configure Reports for any output format.
 #
-# Ralf Peine, Wed May 14 10:39:51 2014
+# Ralf Peine, Tue May 27 11:30:07 2014
 #
 # More documentation at the end of file
 #------------------------------------------------------------------------------
 
-$VERSION = "2.000";
+$VERSION = "2.001";
 
 package Report::Porf;
 
@@ -52,7 +52,7 @@ Framework to create/configure Reports for any output format.
 
 =head1 VERSION
 
-This documentation refers to version 2.000 of Report::Porf
+This documentation refers to version 2.001 of Report::Porf
 
 All subs are no longer camel cased, so update your scripts, please.
 A list for conversion can be find in Report/Porf/rename_list.pl
@@ -151,6 +151,17 @@ options are available:
 
 The sub {...} makes conditional coloring easy possible.
 
+=head3 Value Manipulation
+
+  -default_value        -def_val      -dv   constant: default value
+  -escape_special_chars -esc_spec_chr -esc  constant: 1 or 0
+
+Use default_cell_value if value is undef or ''.
+
+To switch off special value escaping use
+
+  escape_special_chars => 0
+
 As next, access to the value has to be defined. There are 4 alternatives
 to get the value of a cell depending of type (array, hash, object).
 
@@ -162,25 +173,25 @@ to get the value of a cell depending of type (array, hash, object).
 
   $report->configure_column(-header => 'Prename', -value_indexed => $prename ); # long
   $report->conf_col        (-h      => 'Surname', -val_idx       => $surname ); # short
-  $report->cc             (-h      => 'Age',     -vi            => $age     ); # minimal
+  $report->cc              (-h      => 'Age',     -vi            => $age     ); # minimal
 
 =head3 GetValue Alternative 2 --- HASH
 
   $report->configure_column(-header => 'Prename', -value_named => 'Prename' ); # long
   $report->conf_col        (-h      => 'Surname', -val_nam     => 'Surname' ); # short
-  $report->cc             (-h      => 'Age',     -vn          => 'Age'     ); # minimal
+  $report->cc              (-h      => 'Age',     -vn          => 'Age'     ); # minimal
 
 =head3 GetValue Alternative 3 --- OBJECT
 
   $report->configure_column(-header => 'Prename', -value_object => 'get_prename()'); # long
   $report->conf_col        (-h      => 'Surname', -val_obj      => 'get_surname()'); # short
-  $report->cc             (-h      => 'Age',     -vo           => 'get_age()'    ); # minimal
+  $report->cc              (-h      => 'Age',     -vo           => 'get_age()'    ); # minimal
 
 =head3 GetValue Alternative 4 --- Free 
 
   $report->configure_column(-h => 'Prename',  -value =>    '"Dr. " . $_[0]->{Surname}'    );
   $report->conf_col        (-h => 'Surname',    -val => sub { return $_[0]->{Prename}; }; );
-  $report->cc             (-h => 'Age (Months)', -v =>     '(12.0 * $_[0]->get_age())'    );
+  $report->cc              (-h => 'Age (Months)', -v =>     '(12.0 * $_[0]->get_age())'    );
 
 =head2 When All Columns Are Configured
 

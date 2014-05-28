@@ -10,30 +10,6 @@ lib/Report/Porf/examples/minimal_hash.pl
 lib/Report/Porf/examples/minimal_object.pl
 lib/Report/Porf/examples/Person.pm
 lib/Report/Porf/examples/presentation_mini.pl
-lib/Report/Porf/examples/result_array_14.csv
-lib/Report/Porf/examples/result_array_14.html
-lib/Report/Porf/examples/result_array_14.txt
-lib/Report/Porf/examples/result_hash_11.csv
-lib/Report/Porf/examples/result_hash_11.html
-lib/Report/Porf/examples/result_hash_11.txt
-lib/Report/Porf/examples/result_minimal_array_15.csv
-lib/Report/Porf/examples/result_minimal_array_15.html
-lib/Report/Porf/examples/result_minimal_array_15.text
-lib/Report/Porf/examples/result_minimal_hash_12.csv
-lib/Report/Porf/examples/result_minimal_hash_12.html
-lib/Report/Porf/examples/result_minimal_hash_12.text
-lib/Report/Porf/examples/result_minimal_object_18.html
-lib/Report/Porf/examples/result_minimal_object_18.text
-lib/Report/Porf/examples/result_object_14.txt
-lib/Report/Porf/examples/result_object_17.html
-lib/Report/Porf/examples/result_short_array_16.csv
-lib/Report/Porf/examples/result_short_array_16.html
-lib/Report/Porf/examples/result_short_array_16.txt
-lib/Report/Porf/examples/result_short_hash_13.csv
-lib/Report/Porf/examples/result_short_hash_13.html
-lib/Report/Porf/examples/result_short_hash_13.txt
-lib/Report/Porf/examples/result_short_object_16.txt
-lib/Report/Porf/examples/result_short_object_19.html
 lib/Report/Porf/examples/run_all.bat
 lib/Report/Porf/examples/run_all.sh
 lib/Report/Porf/examples/short_array.pl
@@ -51,6 +27,7 @@ lib/Report/Porf/Util.pm
 Makefile.PL
 MANIFEST
 README
+t/Porf.t
 t/Report-Porf.t
 META.yml                                 Module YAML meta-data (added by MakeMaker)
 META.json                                Module JSON meta-data (added by MakeMaker)

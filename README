@@ -33,8 +33,7 @@ This module requires only the following perl standard modules to run:
 
 and following additional standard modules for testing in Porf.t
 
-  Test::Exception;
-  Test::More tests;
+  Test::More;
   Time::HiRes;
 
 COPYRIGHT AND LICENCE

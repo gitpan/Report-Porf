@@ -4,3 +4,7 @@ Revision history for Perl extension Report::Porf
 	- original version; created by h2xs 1.23 with options
 		-X -n Report::Porf
 
+2.001 Wed May 28 08:59:10 2014
+    - default cell value handling added
+	- no longer use of Test::Exception
+	  --> only standard perl modules used

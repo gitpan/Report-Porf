@@ -6,12 +6,12 @@
 #
 # Configures a Report::Porf::Table::Simple to write out HTML tables
 #
-# Ralf Peine, Wed May 14 10:39:50 2014
+# Ralf Peine, Tue May 27 11:29:32 2014
 #
 # More documentation at the end of file
 #------------------------------------------------------------------------------
 
-$VERSION = "2.000";
+$VERSION = "2.001";
 
 #------------------------------------------------------------------------------
 #
@@ -254,6 +254,10 @@ sub configure_report {
 
             my $column_attributes = ""; # Attributes in td-Element
 
+            # --- default value ---------------------------------------
+			my $default_value = get_option_value(\%options, qw (-default_value -def_val -dv));
+			$default_value = $report->get_default_cell_value() unless defined $default_value;
+
             # --- value ---------------------------------------
             my $value         = interprete_value_options(\%options);
             my $value_ref     = ref($value);
@@ -272,7 +276,8 @@ sub configure_report {
                 }
             }
             else {
-                $value_action = $report->create_action("return $value;");
+				$value        = complete_value_code($value, $default_value);
+                $value_action = $report->create_action("$value;");
             }
 
             # --- format value ----------------------------------------

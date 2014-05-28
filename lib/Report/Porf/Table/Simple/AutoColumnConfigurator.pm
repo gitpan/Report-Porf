@@ -170,6 +170,8 @@ sub create_report {
 
     $report_framework = Report::Porf::Framework::get() unless $report_framework;
     my $report        = $report_framework->create_report($format);
+
+	$report->set_default_cell_value('');
     
     foreach my $config_option (@{$self->create_report_configuration($list_ref)}) {
 		$report->cc (%$config_option);

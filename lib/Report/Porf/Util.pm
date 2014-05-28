@@ -4,12 +4,12 @@
 #
 # Utilities for the Perl Open Report Framework (Porf)
 #
-# Ralf Peine, Wed May 14 10:39:51 2014
+# Ralf Peine, Tue May 27 11:30:37 2014
 #
 # More documentation at the end of file
 #------------------------------------------------------------------------------
 
-$VERSION = "2.000";
+$VERSION = "2.001";
 
 use strict;
 use warnings;
@@ -28,7 +28,7 @@ use base qw (Exporter);
 
 our @EXPORT = qw (
 print_hash_ref verbose 
-get_option_value interprete_value_options
+get_option_value interprete_value_options complete_value_code
 interprete_alignment const_length_left const_length_center const_length_right
 );
 
@@ -74,14 +74,14 @@ sub get_option_value {
 sub interprete_value_options {
     my $option_ref = shift;
 
-    my $value         = get_option_value($option_ref, qw (-value         -val     -v));
+    my $value_other   = get_option_value($option_ref, qw (-value         -val     -v));
     my $value_indexed = get_option_value($option_ref, qw (-value_indexed -val_idx -vi));
     my $value_named   = get_option_value($option_ref, qw (-value_named   -val_nam -vn));
     my $value_object  = get_option_value($option_ref, qw (-value_object  -val_obj -vo));
     
     my @used_opts;
 
-    push (@used_opts, "\$value => $value")                     if defined $value;
+    push (@used_opts, "\$value_other => $value_other")         if defined $value_other;
     push (@used_opts, "\$value_indexed => $value_indexed")     if defined $value_indexed;
     push (@used_opts, "\$value_named => $value_named")         if defined $value_named;
     push (@used_opts, "\$value_object => $value_object")       if defined $value_object;
@@ -90,7 +90,7 @@ sub interprete_value_options {
 		if (scalar @used_opts > 1);
     
     # recalc value
-    my $value_result = $value;
+    my $value_result = $value_other;
 
     if (defined $value_indexed) {
 		die "Not an index for value array position: '$value_indexed'"
@@ -110,8 +110,22 @@ sub interprete_value_options {
 			if $get_value_call =~ /\W/;
 		$value_result = '$_[0]->'.$get_value_call.'()';
     }
-
+	
     return $value_result;
+}
+
+# --- complete value code --- add check for default value to code sequence, if $default_value defined -------
+sub complete_value_code {
+	my $value_code_str = shift;
+	my $default_value  = shift;
+
+	return "return $value_code_str" unless defined $default_value;
+
+	$default_value =~ s/'/\\'/og;
+	
+	return "my \$value = $value_code_str;\n".
+		"\$value = '$default_value' if !defined \$value || \$value eq '';\n".
+			"return \$value;";
 }
 
 # --- get value for alignment --------------------------------------------------
@@ -146,8 +160,6 @@ sub const_length_left {
 		$value
 	) = @_;
 
-    $value = "" unless defined $value;
-    
     my $l = length ($value);
 
     if ( $l < $wanted_length) {
@@ -166,8 +178,6 @@ sub const_length_center {
 		$value
 	) = @_;
 
-    $value = "" unless defined $value;
-    
     my $l = length ($value);
 
     if ( $l < $wanted_length) {
@@ -189,8 +199,6 @@ sub const_length_right {
 		$value
 	) = @_;
 
-    $value = "" unless defined $value;
-    
     my $l = length ($value);
 
     if ( $l < $wanted_length) {

@@ -6,12 +6,12 @@
 #
 # Framework to create/configure Reports for any output format.
 #
-# Ralf Peine, Wed May 14 10:39:49 2014
+# Ralf Peine, Tue May 27 11:30:17 2014
 #
 # More documentation at the end of file
 #------------------------------------------------------------------------------
 
-$VERSION = "2.000";
+$VERSION = "2.001";
 
 #------------------------------------------------------------------------------
 #
@@ -448,7 +448,7 @@ Part of Perl Open Report Framework (Porf).
 
 =head1 VERSION
 
-This documentation refers to version 2.000 of Report::Porf::Framework
+This documentation refers to version 2.001 of Report::Porf::Framework
 
 All subs are no longer camel cased, so update your scripts, please.
 A list for conversion can be find in Report/Porf/rename_list.pl
@@ -523,6 +523,17 @@ options are available:
   -color   -c   constant / sub {...}
 
 The sub {...} makes conditional coloring easy possible.
+
+=head3 Value Manipulation
+
+  -default_value        -def_val      -dv   constant: default value
+  -escape_special_chars -esc_spec_chr -esc  constant: 1 or 0
+
+Use default_cell_value if value is undef or ''.
+
+To switch off special value escaping use
+
+  escape_special_chars => 0
 
 As next, access to the value has to be defined. There are 4 alternatives
 to get the value of a cell depending of type (array, hash, object).
